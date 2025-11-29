@@ -1,0 +1,339 @@
+/* -------------------------------------------------------
+   Modern Teal-Indigo Theme – simplified & easier-to-edit
+   Keeps your classes intact; small cleanups only
+-------------------------------------------------------- */
+
+:root{
+  /* palette */
+  --bg: #0f1720;
+  --panel: #0b1220;
+  --card: #0f1726;
+  --muted: #9fb3c8;
+  --text: #e6f2f7;
+  --accent: #06b6d4;
+  --accent-2: #7c3aed;
+  --glass: rgba(255,255,255,0.03);
+  --shadow: rgba(2,6,23,0.45);
+  --radius: 12px;
+  --max-width: 1100px;
+}
+
+/* -------------------------------------------------------
+   Global resets & layout
+-------------------------------------------------------- */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Inter", 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(180deg, #071226 0%, var(--bg) 60%);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 36px 20px;
+}
+
+/* -------------------------------------------------------
+   Header
+-------------------------------------------------------- */
+.header { padding: 14px 0; background: transparent; }
+.header .row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.brand { font-weight:700; letter-spacing:0.4px; color:var(--text); font-size:18px; }
+.nav a {
+  color: var(--muted);
+  margin-left: 18px;
+  text-decoration: none;
+  font-weight:600;
+  font-size:14px;
+  transition: transform 160ms ease, color 160ms ease;
+}
+.nav a:hover { color: var(--text); transform: translateY(-2px); }
+
+/* -------------------------------------------------------
+   Hero Section
+-------------------------------------------------------- */
+.hero { display:flex; gap:28px; align-items:center; padding:64px 0; }
+.avatar {
+  width:140px; height:140px; border-radius:18px;
+  background: linear-gradient(135deg, rgba(6,182,212,0.14), rgba(124,58,237,0.10));
+  display:flex; align-items:center; justify-content:center;
+  color:var(--text); font-size:48px; font-weight:700;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.5); overflow:hidden;
+  border: 1px solid rgba(255,255,255,0.02);
+}
+.avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+.hero-text h1 { font-size:36px; margin:0 0 6px; }
+.hero-text h2 { font-size:20px; margin:0; color:var(--muted); font-weight:600; }
+.tagline { margin-top:12px; color:var(--muted); max-width:680px; line-height:1.6; }
+
+/* -------------------------------------------------------
+   Sections
+-------------------------------------------------------- */
+.section { padding:36px 0; }
+.section-head { display:flex; flex-direction:column; align-items:flex-start; margin-bottom:18px; }
+.section-head h2 { font-size:22px; margin:0; color:var(--text); }
+.section-divider {
+  width:72px; height:6px; border-radius:999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  margin-top:10px; box-shadow: 0 6px 18px rgba(6,182,212,0.06);
+}
+
+/* -------------------------------------------------------
+   Cards (base)
+-------------------------------------------------------- */
+.card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), var(--card));
+  border-radius: var(--radius);
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,0.02);
+  box-shadow: 0 8px 30px var(--shadow);
+  color: var(--text);
+}
+
+/* -------------------------------------------------------
+   About Section
+-------------------------------------------------------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  align-items: start;
+}
+.bio { color: var(--muted); line-height: 1.7; }
+
+/* -------------------------------------------------------
+   Skills
+-------------------------------------------------------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.skill-card {
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.02);
+  box-shadow: 0 8px 28px var(--shadow);
+  display:flex; flex-direction:column; gap:10px;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.skill-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(2,6,23,0.55); }
+
+.skill-row { display:flex; justify-content:space-between; gap:12px; align-items:start; }
+.skill-name { font-weight:700; font-size:15px; color:var(--text); }
+.skill-desc { font-size:13px; margin-top:6px; color:var(--muted); }
+.skill-meta { display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
+.skill-percent { font-weight:700; font-size:14px; color:var(--text); }
+.skill-level { font-size:12px; color:var(--muted); }
+
+/* progress bar */
+.skill-bar {
+  width:100%; height:12px; background: rgba(255,255,255,0.03);
+  border-radius:999px; overflow:hidden; margin-top:8px;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.02);
+}
+.skill-fill {
+  height:100%;
+  width:0%; /* JS can set inline width or add class to animate */
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius:999px;
+  transition: width 900ms cubic-bezier(.2,.9,.23,1);
+  box-shadow: 0 8px 26px rgba(6,182,212,0.12);
+}
+
+/* chips */
+.skill-chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+.skill-pill {
+  display:inline-block; padding:6px 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius:999px; font-size:12px; color:var(--text);
+  border: 1px solid rgba(255,255,255,0.02); font-weight:600;
+}
+
+/* -------------------------------------------------------
+   Projects
+-------------------------------------------------------- */
+.projects-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:18px; }
+.project-title { font-weight:700; margin:0 0 6px; color:var(--text); }
+.project-meta { color:var(--muted); font-size:13px; }
+.project-card .thumb { height:140px; border-radius:8px;
+  background: linear-gradient(180deg, rgba(124,58,237,0.06), rgba(6,182,212,0.04));
+  display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.28); font-weight:600;
+}
+.project-card .thumb img { width:100%; height:100%; object-fit:cover; border-radius:8px; display:block; }
+.project-points { margin-top:12px; padding-left:16px; color:var(--muted); line-height:1.5; }
+.project-points li { margin-bottom:6px; }
+
+/* -------------------------------------------------------
+   Certifications
+-------------------------------------------------------- */
+.certs-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; }
+.cert-card {
+  padding:16px; border-radius:12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.02); box-shadow: 0 10px 28px var(--shadow);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.cert-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(2,6,23,0.6); }
+
+/* -------------------------------------------------------
+   FAQ / Accordion
+-------------------------------------------------------- */
+.faq-grid { display:grid; grid-template-columns: 1fr; gap:12px; }
+.faq-question { font-size:15px; color:var(--text); }
+.faq-icon { transition: transform 260ms ease; color:var(--muted); }
+.faq-icon.open { transform: rotate(180deg); }
+.faq-answer { font-size:14px; color:var(--muted); }
+
+@media(min-width:1100px) { .faq-grid { grid-template-columns: 1fr 1fr; gap:16px; } }
+
+/* -------------------------------------------------------
+   Contact
+-------------------------------------------------------- */
+.contact-grid { display:grid; grid-template-columns: 320px 1fr; gap:18px; }
+.input, textarea {
+  width:100%; padding:10px; border-radius:10px;
+  border:1px solid rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.01); color:var(--text);
+  font: inherit;
+}
+
+/* button styles */
+.btn {
+  display:inline-block; padding:10px 14px; border-radius:10px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color:white; font-weight:700; text-decoration:none; border:none; cursor:pointer;
+  transition: transform 160ms ease, box-shadow 160ms;
+  box-shadow: 0 8px 28px rgba(6,182,212,0.12);
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 18px 36px rgba(6,182,212,0.16); }
+
+a.link { color: var(--accent); text-decoration:none; }
+
+/* -------------------------------------------------------
+   Testimonials & Footer
+-------------------------------------------------------- */
+.testimonials-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:16px; }
+
+.footer { padding:28px 0; text-align:center; color:var(--muted); font-size:14px; }
+/*-------------------------------------------------------
+ Education Grid 
+-------------------------------------------------------- */
+.education-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* Degree card */
+.degree-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.degree-title {
+  font-weight: 700;
+}
+
+.college-name {
+  margin-top: 6px;
+}
+
+.degree-info {
+  text-align: right;
+}
+
+.cgpa {
+  margin-top: 6px;
+  font-weight: 700;
+}
+
+.cgpa span {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Badges */
+.degree-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.edu-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 13px;
+}
+
+/* Description */
+.degree-desc {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Highlights */
+.edu-highlights { margin-top: 16px; }
+
+.highlights-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.highlights-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.sub-list {
+  margin-top: 6px;
+  padding-left: 18px;
+}
+
+/* Right-side school card */
+.small-cards {
+  display: grid;
+  gap: 16px;
+}
+
+.school-title { font-weight: 700; }
+.school-name, .school-score { margin-top: 6px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* -------------------------------------------------------
+   Responsive adjustments
+-------------------------------------------------------- */
+@media (max-width:880px) {
+  .about-grid { grid-template-columns: 1fr; gap:12px; }
+  .hero { flex-direction:column; align-items:flex-start; gap:18px; }
+  .avatar { width:120px; height:120px; border-radius:14px; font-size:40px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .container { padding:20px; }
+}
+
+@media (min-width:1200px) {
+  .container { padding-left:28px; padding-right:28px; }
+}
